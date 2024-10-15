@@ -1,54 +1,39 @@
-let equal_pressed = 0;
-//Refer all buttons excluding AC and DEL
-let button_input = document.querySelectorAll(".input-button");
-//Refer input,equal,clear and erase
-let input = document.getElementById("input");
-let equal = document.getElementById("equal");
-let clear = document.getElementById("clear");
-let erase = document.getElementById("erase");
-
-window.onload = () => {
-  input.value = "";
-};
-
-//Access each class using forEach
-button_input.forEach((button_class) => {
-  button_class.addEventListener("click", () => {
-    if (equal_pressed == 1) {
-      input.value = "";
-      equal_pressed = 0;
+function add(number1, number2) {
+    return number1 + number2;
+}
+function subtract(number1, number2) {
+    return number1 - number2;
+}
+function multiply(number1, number2) {
+    return number1 * number2;
+}
+function divide(number1, number2) {
+    if (number2 === 0) {
+        return 'Error: Division by zero';
     }
-    //display value of each buttonnpm install tailwindcss
-
-    input.value += button_class.value;
-  });
+    return number1 / number2;
+}
+document.getElementById('add').addEventListener('click',function(){
+    const number1 = parseFloat(document.getElementById('number1').value) || 0;
+    const number2 = parseFloat(document.getElementById('number2').value) || 0;
+    const result = add(number1, number2);
+    document.getElementById('calculation-result').textContent = result;
 });
-
-//Solve the user's input when clicked on equal sign
-equal.addEventListener("click", () => {
-  equal_pressed = 1;
-  let inp_val = input.value;
-  try {
-    //evaluate user's input
-    let solution = eval(inp_val);
-    //True for natural numbers
-    //false for decimals
-    if (Number.isInteger(solution)) {
-      input.value = solution;
-    } else {
-      input.value = solution.toFixed(2);
-    }
-  } catch (err) {
-    //If user has entered invalid input
-    alert("Invalid Input");
-  }
+document.getElementById('subtract').addEventListener('click',function(){
+    const number1 = parseFloat(document.getElementById('number1').value) || 0;
+    const number2 = parseFloat(document.getElementById('number2').value) || 0;
+    const result = subtract(number1, number2);
+    document.getElementById('calculation-result').textContent = result;
 });
-
-//Clear Whole Input
-clear.addEventListener("click", () => {
-  input.value = "";
+document.getElementById('multiply').addEventListener('click',function(){
+    const number1 = parseFloat(document.getElementById('number1').value) || 0;
+    const number2 = parseFloat(document.getElementById('number2').value) || 0;
+    const result = multiply(number1, number2);
+    document.getElementById('calculation-result').textContent = result;
 });
-//Erase Single Digit
-erase.addEventListener("click", () => {
-  input.value = input.value.substr(0, input.value.length - 1);
+document.getElementById('divide').addEventListener('click',function(){
+    const number1 = parseFloat(document.getElementById('number1').value) || 0;
+    const number2 = parseFloat(document.getElementById('number2').value) || 0;
+    const result = divide(number1, number2);
+    document.getElementById('calculation-result').textContent = result;
 });
